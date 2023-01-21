@@ -11,6 +11,9 @@
           <div class="card">
               <div class="card-header">
                   <h4 class="card-title">{{ __('Detail Data Barang Yang Akan Di Lelang') }}</h4>
+                  <h2 class="fs-6 fw-lighter text-muted font-monospace">
+                    {{ __('Created') }} : {{ \Carbon\Carbon::parse($barangs[0]->created_at)->format('j-F-Y : H:i') }}
+                  </h2>
               </div>
               <div class="card-content">
                   <div class="card-body">

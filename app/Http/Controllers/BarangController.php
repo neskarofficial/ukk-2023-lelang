@@ -79,7 +79,7 @@ class BarangController extends Controller
     public function show(Barang $barang)
     {
         //
-        $barangs = Barang::select('id', 'nama_barang', 'tanggal', 'harga_awal', 'deskripsi', 'created_at', 'update_at')->where('id', $barang->id)->get();
+        $barangs = Barang::select('id', 'nama_barang', 'tanggal', 'harga_awal', 'deskripsi', 'created_at', 'updated_at')->where('id', $barang->id)->get();
         return view('barang.show', compact('barangs'));
     }
 
@@ -132,6 +132,7 @@ class BarangController extends Controller
                 'harga_awal' => $request->harga_awal,
                 'deskripsi' => Str::lower($request->deskripsi),
             ]);
+
         return redirect()->route('barang.index')->with('success', 'Barang Berhasil Diubah');
     }
 
