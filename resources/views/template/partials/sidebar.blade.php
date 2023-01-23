@@ -84,14 +84,14 @@
               </li>
               
               <li class="sidebar-item {{ (request()->segment(2) == 'barang' ? 'active' : '') }}">
-                <a href="" class="sidebar-link">
+                <a href="{{ route('barang.index') }}" class="sidebar-link">
                   <i class="bi bi-box"></i>
                   <span>Data Barang</span>
                 </a>
               </li>
 
               <li class="sidebar-item ">
-                <a href="" class="sidebar-link text-danger">
+                <a href="{{ route('logout-petugas') }}" class="sidebar-link text-danger">
                   <i class="bi bi-box-arrow-in-left text-danger"></i>
                   <span>Log Out</span>
                 </a>

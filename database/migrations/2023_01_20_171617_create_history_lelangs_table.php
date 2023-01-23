@@ -17,8 +17,8 @@ class CreateHistoryLelangsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('lelang_id');
             $table->foreign('lelang_id')->references('id')->on('lelangs')->onDelete('cascade'); 
-            $table->unsignedBigInteger('masyarakat_id');
-            $table->foreign('masyarakat_id')->references('id')->on('masyarakats')->onDelete('cascade');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('harga');
             $table->date('tanggal');
             $table->enum('status', ['pending', 'gugur', 'pemenang']);

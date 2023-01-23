@@ -10,9 +10,9 @@ class Lelang extends Model
     use HasFactory;
     protected $table = 'lelangs';
     protected $fillable = [
-        'barang_id',
-        'masyarakat_id',
-        'petugas_id',
+        'barangs_id',
+        '',
+        '',
         'harga_akhir',
         'tanggal_lelang',
         'status'

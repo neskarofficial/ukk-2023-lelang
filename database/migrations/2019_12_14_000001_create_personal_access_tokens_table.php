@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLelangsTable extends Migration
+class CreatePersonalAccessTokensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateLelangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lelangs', function (Blueprint $table) {
+        Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barangs_id')->constrained('barangs');
-            $table->foreignId('users_id')->constrained('users');
-            $table->date('tanggal_lelang');
-            $table->integer('harga_akhir');
-            $table->enum('status', ['dibuka', 'tutup']);
+            $table->morphs('tokenable');
+            $table->string('name');
+            $table->string('token', 64)->unique();
+            $table->text('abilities')->nullable();
+            $table->timestamp('last_used_at')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateLelangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lelangs');
+        Schema::dropIfExists('personal_access_tokens');
     }
 }

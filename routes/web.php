@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +22,16 @@ Route::get('/', function () {
 });
 
 Route::view('template', 'template.master')->middleware('auth');
-Route::view('dashboard', 'dashboard.index');
 
-Route::view('/masyarakat/login', 'dashboard.index')->name('login-masyarakat');
+Route::get('register', [RegisterController::class, 'view'])->name('register')->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])->name('register-store');
+Route::get('login', [LoginController::class, 'view'])->name('login')->middleware('guest');
+Route::post('login', [LoginController::class, 'autheticatePetugas'])->name('login-petugas-auth');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout-petugas');
 
-Route::prefix('petugas')->group(function () {
-    Route::view('/login', 'dashboard.index')->name('login-petugas');
+Route::view('dashboard', 'dashboard.index')->name('dashboard-petugas')->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
     Route::controller(BarangController::class)->group(function() {
         Route::get('/barang', 'index')->name('barang.index');
         Route::get('/barang/create', 'create')->name('barang.create');
@@ -35,4 +42,5 @@ Route::prefix('petugas')->group(function () {
         Route::delete('/barang/{barang}', 'destroy')->name('barang.destroy');
     });
 });
+
 

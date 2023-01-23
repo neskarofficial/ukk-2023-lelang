@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePetugasTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreatePetugasTable extends Migration
      */
     public function up()
     {
-        Schema::create('petugas', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
             $table->string('name', 25);
             $table->string('username', 25)->unique();
-            $table->string('password', 25);
+            $table->enum('level', ['admin', 'petugas','masyarakat']);
+            $table->string('password');
+            $table->string('telepon', 13);
             $table->rememberToken();
-            $table->unsignedBigInteger('levels_id');
-            $table->foreign('levels_id')->references('id')->on('levels')->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 
@@ -32,6 +33,6 @@ class CreatePetugasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('petugas');
+        Schema::dropIfExists('users');
     }
 }
