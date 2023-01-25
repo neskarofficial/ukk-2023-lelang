@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
 
 class BarangController extends Controller
 {
@@ -28,6 +30,7 @@ class BarangController extends Controller
     public function create()
     {
         //
+        dd(Auth::guard()->check());
         return view('barang.create');
     }
 

@@ -22,8 +22,8 @@
           <ul class="menu">
               <li class="sidebar-title">Menu</li>
               <li
-                  class="sidebar-item  ">
-                  <a href="index.html" class='sidebar-link'>
+                  class="sidebar-item  {{ request()->route()->uri == 'dashboard' ? 'active' : '' }}">
+                  <a href="{{ route('dashboard-petugas') }}" class='sidebar-link '>
                       <i class="bi bi-grid-fill"></i>
                       <span>Dashboard</span>
                   </a>
@@ -83,10 +83,16 @@
                   </ul>
               </li>
               
-              <li class="sidebar-item {{ (request()->segment(2) == 'barang' ? 'active' : '') }}">
+              <li class="sidebar-item {{ request()->segment(1) == 'barang' ? 'active' : '' }}">
                 <a href="{{ route('barang.index') }}" class="sidebar-link">
                   <i class="bi bi-box"></i>
                   <span>Data Barang</span>
+                </a>
+              </li>
+              <li class="sidebar-item {{ request()->segment(1) == 'lelang' ? 'active' : '' }}">
+                <a href="{{ route('lelang.index') }}" class="sidebar-link">
+                  <i class="bi bi-box"></i>
+                  <span>Data Lelang</span>
                 </a>
               </li>
 

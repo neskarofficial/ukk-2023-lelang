@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Lelang;
 
 class Barang extends Model
 {
@@ -15,4 +17,9 @@ class Barang extends Model
         'harga_awal',
         'deskripsi'
     ];
+
+    public function lelang()
+    {
+        return $this->belongsTo(Lelang::class);
+    }
 }
