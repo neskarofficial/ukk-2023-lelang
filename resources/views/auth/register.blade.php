@@ -5,7 +5,7 @@
 @section('content')
 <div id="auth-left">
   <div class="auth-logo">
-      <a href=""><img src="{{ asset('assets/images/logo/logo.svg') }}" alt="Logo"></a>
+        <a href="index.html"><img src="{{ asset('img/logo.png') }}" alt="Logo"></a>
   </div>
   <h1 class="auth-title">{{ __('Sign Up') }}</h1>
   <p class="auth-subtitle mb-5">{{ __('Input your data to register to our website.') }}</p>

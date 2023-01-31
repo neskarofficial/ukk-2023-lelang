@@ -21,7 +21,13 @@ class LelangController extends Controller
     public function index()
     {
         //
-        $lelangs = Lelang::select('id', 'barangs_id', 'tanggal_lelang', 'harga_akhir', 'status')->where('status', 'dibuka')->get();
+        $lelangs = Lelang::select('id', 'barangs_id', 'tanggal_lelang', 'harga_akhir', 'status')
+        ->where([
+            'status' => 'dibuka',
+            'users_id' => Auth::user()->id
+            ])
+        ->get();
+        // dd(Auth::user()->id);
         return view('lelang.index', compact('lelangs'));
     }
 
@@ -35,9 +41,10 @@ class LelangController extends Controller
         //
         $barangs = Barang::select('id', 'nama_barang', 'harga_awal')
                     ->whereNotIn('id', function($query)
-                    {
-                        $query->select('barangs_id')->from('lelangs');
-                    })->get();
+                        { 
+                            $query->select('barangs_id')->from('lelangs');
+                        }
+                    )->get();
         return view('lelang.create', compact('barangs'));
     }
 
@@ -120,5 +127,16 @@ class LelangController extends Controller
     public function destroy(Lelang $lelang)
     {
         //
+    }
+
+    public function masyarakatList(Lelang $lelang)
+    {
+         //
+         $lelangs = Lelang::select('id', 'barangs_id', 'tanggal_lelang', 'harga_akhir', 'status')
+         ->where([
+             'status' => 'dibuka',
+             ])
+         ->get();
+         return view('masyarakat.lelang_list', compact('lelangs'));
     }
 }

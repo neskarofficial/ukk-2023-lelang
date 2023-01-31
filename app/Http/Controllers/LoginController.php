@@ -26,11 +26,16 @@ class LoginController extends Controller
             // Authentication passed...
             $request->session()->regenerate();
             $user = Auth::user();
-            if ($user->level == 'petugas' || $user->level == 'admin') {
-                return redirect()->intended('home');
+            if ($user->level == 'admin')
+            {
+                return redirect()->route('admin.dashboard');
+            } else if ($user->level == 'petugas') {
+                return redirect()->route('petugas.dashboard');
+                // return redirect()->intended('home');
             } else if ($user->level == 'masyarakat') {
-                return redirect()->intended('/masyarakat/home');
-            }
+                return redirect()->route('masyarakat.dashboard');
+                // return redirect()->intended('/masyarakat/home');
+            } else return redirect()->route('login');
         }
 
         return back()->withErrors([

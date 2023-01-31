@@ -20,7 +20,6 @@ class CreateHistoryLelangsTable extends Migration
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('harga');
-            $table->date('tanggal');
             $table->enum('status', ['pending', 'gugur', 'pemenang']);
             $table->timestamps();
         });

@@ -25,6 +25,7 @@ class HistoryLelangController extends Controller
     public function create()
     {
         //
+        return view('masyarakat.penawaran_add');
     }
 
     /**

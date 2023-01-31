@@ -8,8 +8,8 @@
     
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main/app-dark.css') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.svg') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('img/icon.svg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('img/icon.png') }}" type="image/png">
     @stack('css')
 
 </head>
