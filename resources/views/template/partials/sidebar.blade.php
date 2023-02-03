@@ -89,12 +89,14 @@
                   <span>Data Barang</span>
                 </a>
               </li>
+              @if (auth()->user()->level == 'petugas')
               <li class="sidebar-item {{ request()->segment(2) == 'lelang' ? 'active' : '' }}">
                 <a href="{{ route('lelang.index') }}" class="sidebar-link">
                   <i class="bi bi-box"></i>
                   <span>Data Lelang</span>
                 </a>
               </li>
+              @endif
 
               <li class="sidebar-item ">
                 <a href="{{ route('logout-petugas') }}" class="sidebar-link text-danger">

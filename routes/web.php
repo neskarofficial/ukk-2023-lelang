@@ -24,9 +24,10 @@ use App\Http\Controllers\HistoryLelangController;
 Route::redirect('/', '/login', 301);
 
 Route::get('register', [RegisterController::class, 'view'])->name('register')->middleware('guest');
-Route::post('register', [RegisterController::class, 'store'])->name('register-store');
+Route::post('register', [RegisterController::class, 'store'])->name('register-store')->middleware('guest');
 Route::get('login', [LoginController::class, 'view'])->name('login')->middleware('guest');
 Route::post('login', [LoginController::class, 'autheticatePetugas'])->name('login-petugas-auth');
+
 Route::get('logout', [LoginController::class, 'logout'])->name('logout-petugas');
 
 // middleware auth, level admin & petugas
@@ -67,7 +68,7 @@ Route::middleware(['auth', 'level:petugas'])->group(function () {
 Route::middleware(['auth', 'level:masyarakat'])->group(function () {
     Route::view('home', 'dashboard.masyarakat')->name('masyarakat.dashboard');
     Route::get('lelangs/list', [LelangController::class, 'masyarakatList'])->name('lelang.masyarakat.list');
-    Route::get('lelangs/{lelangs}/penarawan', [HistoryLelangController::class, 'create'])->name('lelang.masyarakat.penawaran');
+    Route::get('lelangs/{lelang}/penarawan', [HistoryLelangController::class, 'create'])->name('lelang.masyarakat.penawaran');
 });
 
 Route::prefix('error')->group(function () {

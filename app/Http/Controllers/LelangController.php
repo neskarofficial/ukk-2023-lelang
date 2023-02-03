@@ -127,15 +127,13 @@ class LelangController extends Controller
     public function destroy(Lelang $lelang)
     {
         //
+        
     }
 
     public function masyarakatList(Lelang $lelang)
     {
          //
          $lelangs = Lelang::select('id', 'barangs_id', 'tanggal_lelang', 'harga_akhir', 'status')
-         ->where([
-             'status' => 'dibuka',
-             ])
          ->get();
          return view('masyarakat.lelang_list', compact('lelangs'));
     }

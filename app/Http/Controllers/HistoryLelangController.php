@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HistoryLelang;
+use App\Models\Lelang;
 use Illuminate\Http\Request;
 
 class HistoryLelangController extends Controller
@@ -22,9 +23,10 @@ class HistoryLelangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(HistoryLelang $historyLelang, Lelang $lelang)
     {
         //
+        dd(auth()->user()->id);
         return view('masyarakat.penawaran_add');
     }
 
