@@ -11,8 +11,7 @@ class HistoryLelang extends Model
     protected $table = 'history_lelangs';
     protected $fillable = [
         'lelang_id',
-        'masyarakat_id',
-        'petugas_id',
+        'users_id',
         'harga',
         'tanggal',
         'status'

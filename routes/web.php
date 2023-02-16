@@ -43,7 +43,6 @@ Route::middleware(['auth', 'level:admin,petugas'])->group(function () {
     });
 });
 
-
 // Middleware only admin
 Route::middleware(['auth', 'level:admin'])->group(function () {
     Route::redirect('/admin', 'admin/dashboard', 301);
@@ -65,11 +64,15 @@ Route::middleware(['auth', 'level:petugas'])->group(function () {
     });
 });
 
+//Only Masyarakat
 Route::middleware(['auth', 'level:masyarakat'])->group(function () {
     Route::view('home', 'dashboard.masyarakat')->name('masyarakat.dashboard');
     Route::get('lelangs/list', [LelangController::class, 'masyarakatList'])->name('lelang.masyarakat.list');
     Route::get('lelangs/{lelang}/penarawan', [HistoryLelangController::class, 'create'])->name('lelang.masyarakat.penawaran');
+    Route::post('lelangs/{lelang}/penarawan', [HistoryLelangController::class, 'store'])->name('lelang.masyarakat.penawaran.store');
+
 });
+
 
 Route::prefix('error')->group(function () {
     Route::view('403', 'error.403')->name('error.403');
